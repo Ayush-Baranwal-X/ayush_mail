@@ -117,6 +117,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+# IMPORTANT
+# IMPORTANT
+# IMPORTANT
+# IMPORTANT
+# The line below is to uncommented when website is deployed on pythonanywhere
 STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
@@ -126,6 +131,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Manually Added
 
+# IMPORTANT
+# IMPORTANT
+# IMPORTANT
+# IMPORTANT
+# The line below is to commented when website is deployed on pythonanywhere
 # STATICFILES_DIRS = [
 #     BASE_DIR / "static",
 # ]
