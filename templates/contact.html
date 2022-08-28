@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+    .form-floating {
+        width: 20%;
+        margin: auto;
+    }
+
+    .form-floating1 {
+        width: 40%;
+        margin: auto;
+    }
+
+    /* body {
+        background-color: #f5f5f5;
+    } */
+</style>
+{% endblock head %}
+
+
+{% block image %}
+<div class="container-fluid my-0 px-0">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <!-- <img src="https://source.unsplash.com/random/1600x600/?telephone" class="d-block w-100" alt="..."> -->
+                <img src="/static/1.jfif" class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock image %}
+
+{% block body %}
+<form method="POST" action="">
+    {% csrf_token %}
+    <br>
+    <center>
+        <h1>Contact Us</h1>
+    </center>
+    <div class="form-floating m4">
+        <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Name" />
+        <label for="floatingInput">Name</label>
+    </div>
+    <br>
+    <div class="form-floating m4">
+        <input type="email" class="form-control" id="floatingInput" name="email" placeholder="Email" />
+        <label for="floatingInput">Email</label>
+    </div>
+    <br />
+    <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" name="phone" placeholder="phone" />
+        <label for="floatingPassword">Phone Number</label>
+    </div>
+    <br />
+    <center>
+        <label for="floatingTextarea">Comments</label>
+    </center>
+    <div class="form-floating1">
+        <textarea class="form-control" name = "comment" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px;"></textarea>
+    </div>
+    <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-primary" style="width: 40%; margin: auto;" type="submit">Submit</button>
+    </div>
+    <br>
+    <center>
+        <p class="mt-5 mb-3 text-muted">© 2022–2022</p>
+    </center>
+
+</form>
+{% endblock body %}

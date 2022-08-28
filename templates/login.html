@@ -1,0 +1,57 @@
+{% extends 'basic.html' %}
+
+{% block head %}
+<style>
+    .form-floating {
+        width: 20%;
+        margin: auto;
+    }
+
+    body {
+        background-color: #f5f5f5;
+    }
+</style>
+{% endblock head %}
+
+{% block body %}
+
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1 class="text-center">Please Log In</h1>
+
+    <br />
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="form-floating m4">
+            <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Username" />
+            <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" />
+            <label for="floatingPassword">Password</label>
+        </div>
+        <br />
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" style="width: 40%; margin: auto;" type="submit">Log In</button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <center>
+            Don't have an account?
+            <br>
+            <br>
+            <a href="/signup">
+                <button type="button" class="btn btn-outline-dark">
+                    Create a New Account
+                </button>
+            </a>
+            <p class="mt-5 mb-3 text-muted">© 2022–2022</p>
+        </center>
+    </form>
+</body>
+{% endblock body %}

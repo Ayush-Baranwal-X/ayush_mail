@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block image %}
+
+{% endblock image %}
+
+{% block body %}
+<div class="card">
+    <h5 class="card-header">
+        <span>
+            Subject : {{mail.subject}}
+            <a href="/mails" role="button" style="float: right; text-decoration: none;">x</a>
+        </span>
+    </h5>
+    <div class="card-body" style="clear: right;">
+        <p class="card-title">From : {{mail.fromuser}}</p>
+        <p class="card-text">Date : {{mail.date}}</p>
+        <p class="card-text">Body : <pre>{{mail.body}}</pre></p>
+    </div>
+</div>
+{% endblock body %}

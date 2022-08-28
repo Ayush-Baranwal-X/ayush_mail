@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block image %}
+
+{% endblock image %}
+
+{% block body %}
+
+{% if number == 0 %}
+<h1 style="align-items: center; justify-content: center; display: flex; vertical-align: middle; margin-top: 10%;">You don't have any Mails</h1>
+{% else %}
+<h1>You have the following Mails</h1>
+{% endif %}
+
+
+
+{% for mail in mails %}
+<!-- From : {{mail.fromuser}}
+<br>
+<a href="">
+    Subject : {{mail.subject}}
+</a>
+<br>
+<br> -->
+
+<div class="card">
+    <h5 class="card-header">
+        Subject : {{mail.subject}}
+    </h5>
+    <div class="card-body">
+        <p class="card-title">From : {{mail.fromuser}}</p>
+        <p class="card-text">Date : {{mail.date}}</p>
+        <a href="{% url 'mailopen' pk=mail.pk%}" class="btn btn-primary">Read</a>
+        <a href="{% url 'maildelete' pk=mail.pk%}" class="btn btn-primary">Delete</a>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock body %}
