@@ -15,9 +15,10 @@ import datetime
 def index(request):
     if request.user.is_anonymous:
         return redirect('/login')
+    user_name = request.user.username
     context = {
         'home_tab' : 'active',
-        'user_name' : request.user.username,
+        'user_name' : user_name,
     }
     return render(request, 'index.html', context)
 
