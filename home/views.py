@@ -15,10 +15,8 @@ import datetime
 def index(request):
     if request.user.is_anonymous:
         return redirect('/login')
-    user_name = request.user.username
     context = {
         'home_tab' : 'active',
-        'user_name' : user_name,
     }
     return render(request, 'index.html', context)
 
@@ -31,7 +29,6 @@ def mails(request):
         'mails_tab' : 'active',
         'mails' : mails,
         'number' : number,
-        'user_name' : request.user.username,
     }
     return render(request, 'mails.html', context)
 
@@ -43,7 +40,6 @@ def mail(request,pk):
     context = {
         'mails_tab' : 'active',
         'mail' : mail,
-        'user_name' : request.user.username,
     }
     return render(request, 'mail.html', context)
 
@@ -58,17 +54,13 @@ def delete(request,pk):
 def about(request):
     if request.user.is_anonymous:
         return redirect('/login')
-    context = {
-        'user_name' : request.user.username,
-    }
-    return render(request, 'about.html', context)
+    return render(request, 'about.html')
 
 def contact(request):
     if request.user.is_anonymous:
         return redirect('/login')
     context = {
         'contact_tab' : 'active',
-        'user_name' : request.user.username,
     }
     if request.method == "POST":
         name = request.POST.get("name")
@@ -93,7 +85,6 @@ def sendmail(request):
     context = {
         'sendmail_tab' : 'active',
         'contacts': contacts,
-        'user_name' : request.user.username,
     }
     if request.method == "POST":
         fromuser = request.user.username
