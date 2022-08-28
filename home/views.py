@@ -8,6 +8,7 @@ from django.contrib import messages
 from home.models import Info
 from home.models import Feedback
 from home.models import Mail
+from django.utils import timezone
 import datetime
 
 # Create your views here.
@@ -23,7 +24,7 @@ def index(request):
 def mails(request):
     if request.user.is_anonymous:
         return redirect('/login')
-    mails = Mail.objects.filter(touser=request.user.username).order_by('date')
+    mails = Mail.objects.filter(touser=request.user.username).order_by('date').reverse()
     number = mails.count()
     context = {
         'mails_tab' : 'active',
@@ -67,7 +68,7 @@ def contact(request):
         email = request.POST.get("email")
         phone = request.POST.get("phone")
         comment = request.POST.get("comment")
-        date = datetime.datetime.now()
+        date = timezone.now()
         if name == "" or email == "" or phone == "" or comment == "":
             messages.warning(request, 'You are required to fill all feilds!')
             return render(request, 'contact.html', context)
@@ -91,7 +92,7 @@ def sendmail(request):
         touser = request.POST.get("touser")
         subject = request.POST.get("subject")
         body = request.POST.get("body")
-        date = datetime.datetime.now()
+        date = timezone.now()
         if fromuser == "" or touser == "" or subject == "" or body == "":
             messages.warning(request, 'You are required to fill all feilds!')
             return render(request, 'sendmail.html', context)
@@ -129,7 +130,7 @@ def signup(request):
         phone = request.POST.get("phone")
         country = request.POST.get("country")
         gender = request.POST.get("gender")
-        date = datetime.datetime.now()
+        date = timezone.now()
         if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
             messages.warning(request, 'Your account already exists. Try logging in!')
             return redirect('/login')
