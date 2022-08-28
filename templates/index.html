@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %}Home{% endblock title %}
+
 {% block image %}
 <div class="container-fluid my-0 px-0">
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -18,7 +20,7 @@
                 <!-- <img src="https://source.unsplash.com/random/1600x600/?social" class="d-block w-100" alt="..."> -->
                 <img src="/static/7.jfif" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Welcome to Ayush Mail</h5>
+                    <h5>Welcome to Dmail</h5>
                     <p>The most elegant and minimalistic mailing site you have ever seen!</p>
                 </div>
             </div>
@@ -28,7 +30,7 @@
                 <img src="/static/4.jfif" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Connect with Friends</h5>
-                    <p>What are your waiting for? Send a mail to your friend right now!</p>
+                    <p>What are your waiting for? Send a dmail to your friend right now!</p>
                 </div>
             </div>
             <!-- Third Image -->
@@ -36,8 +38,8 @@
                 <!-- <img src="https://source.unsplash.com/random/1600x600/?travel" class="d-block w-100" alt="..."> -->
                 <img src="/static/8.jfif" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Send Professional Mails</h5>
-                    <p>Want to send some Professional mails? We got you covered!</p>
+                    <h5>Send Professional Dmails</h5>
+                    <p>Want to send some Professional dmails? We got you covered!</p>
                 </div>
             </div>
         </div>
@@ -57,8 +59,14 @@
 </div>
 {% endblock image %}
 
-<!-- {% block body %}
-{% for event in event_list %}
-
-{% endfor %}
-{% endblock body %} -->
+{% block body %}
+<br>
+<center>
+    <h1>
+        Dmail
+    </h1>
+    <p style="margin: 0% 10%;">
+        Hi! You may be wondering what is a dmail? Well dmails are the new emails. They are stylish, easy to send and perfect for your day to day use. So what are you waiting for? Send a dmail right now!
+    </p>
+</center>
+{% endblock body %}

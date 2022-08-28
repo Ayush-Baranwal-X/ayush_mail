@@ -17,6 +17,7 @@ def index(request):
         return redirect('/login')
     context = {
         'home_tab' : 'active',
+        'user_name' : request.user.username,
     }
     return render(request, 'index.html', context)
 
@@ -28,7 +29,8 @@ def mails(request):
     context = {
         'mails_tab' : 'active',
         'mails' : mails,
-        'number' : number
+        'number' : number,
+        'user_name' : request.user.username,
     }
     return render(request, 'mails.html', context)
 
@@ -40,6 +42,7 @@ def mail(request,pk):
     context = {
         'mails_tab' : 'active',
         'mail' : mail,
+        'user_name' : request.user.username,
     }
     return render(request, 'mail.html', context)
 
@@ -54,14 +57,18 @@ def delete(request,pk):
 def about(request):
     if request.user.is_anonymous:
         return redirect('/login')
-    return render(request, 'about.html')
+    context = {
+        'user_name' : request.user.username,
+    }
+    return render(request, 'about.html', context)
 
 def contact(request):
-    context = {
-        'contact_tab' : 'active',
-    }
     if request.user.is_anonymous:
         return redirect('/login')
+    context = {
+        'contact_tab' : 'active',
+        'user_name' : request.user.username,
+    }
     if request.method == "POST":
         name = request.POST.get("name")
         email = request.POST.get("email")
@@ -79,13 +86,14 @@ def contact(request):
     return render(request, 'contact.html', context)
 
 def sendmail(request):
+    if request.user.is_anonymous:
+        return redirect('/login')
     contacts = User.objects.all()
     context = {
         'sendmail_tab' : 'active',
         'contacts': contacts,
+        'user_name' : request.user.username,
     }
-    if request.user.is_anonymous:
-        return redirect('/login')
     if request.method == "POST":
         fromuser = request.user.username
         touser = request.POST.get("touser")
