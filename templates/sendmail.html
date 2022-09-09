@@ -45,8 +45,19 @@
 
     <br />
     <div class="form-floating">
-        <input type="text" class="form-control" id="floatingInput" name="subject" placeholder="Subject"
-            value={{reply.subject}}>
+        {% if reply.touser != null %}
+            {% if reply.subject.0 != 'R' or reply.subject.1 != 'e' or reply.subject.2 != ':' %}
+            <input type="text" class="form-control" id="floatingInput" name="subject" placeholder="Subject"
+                value="Re: {{reply.subject}}">
+            {% endif %}
+            {% if reply.subject.0 == 'R' and reply.subject.1 == 'e' and reply.subject.2 == ':' %}
+            <input type="text" class="form-control" id="floatingInput" name="subject" placeholder="Subject"
+                value="{{reply.subject}}">
+            {% endif %}
+        {% endif %}
+        {% if reply.touser == null %}
+        <input type="text" class="form-control" id="floatingInput" name="subject" placeholder="Subject">
+        {% endif %}
         <label for="floatingPassword">Subject</label>
     </div>
     <br />

@@ -112,10 +112,6 @@ def reply(request, pk):
         return redirect('/login')
     contacts = User.objects.all()
     reply = get_object_or_404(Mail, pk=pk)
-    if reply.subject[0] == 'R' and reply.subject[1] == 'e' and reply.subject[2] == ':':
-        pass
-    else:
-        reply.subject = 'Re:'+reply.subject
 
     context = {
         'sendmail_tab' : 'active',
