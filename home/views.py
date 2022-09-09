@@ -107,6 +107,41 @@ def sendmail(request):
                 return redirect('/sendmail')
     return render(request, 'sendmail.html', context)
 
+def reply(request, pk):
+    if request.user.is_anonymous:
+        return redirect('/login')
+    contacts = User.objects.all()
+    reply = get_object_or_404(Mail, pk=pk)
+    if reply.subject[0] == 'R' and reply.subject[1] == 'e' and reply.subject[2] == ':':
+        pass
+    else:
+        reply.subject = 'Re:'+reply.subject
+
+    context = {
+        'sendmail_tab' : 'active',
+        'contacts': contacts,
+        'reply' : reply,
+    }
+    if request.method == "POST":
+        fromuser = request.user.username
+        touser = request.POST.get("touser")
+        subject = request.POST.get("subject")
+        body = request.POST.get("body")
+        date = timezone.now()
+        if fromuser == "" or touser == "" or subject == "" or body == "":
+            messages.warning(request, 'You are required to fill all feilds!')
+            return render(request, 'sendmail.html', context)
+        else:
+            if User.objects.filter(username=touser).exists():
+                mail = Mail(fromuser=fromuser,touser=touser,subject=subject,body=body,date=date)
+                mail.save()
+                messages.success(request, 'Mail sent successfully!')
+                return redirect('/')
+            else:
+                messages.warning(request, 'Invalid Username entered in the To feild!')
+                return redirect('/sendmail')
+    return render(request, 'sendmail.html', context)
+
 def loginUser(request):
     if request.method == "POST":
         username = request.POST.get("username")

@@ -10,7 +10,7 @@
     }
 
     .form-floating1 {
-        width: 60%;
+        width: 80%;
         margin: auto;
     }
 
@@ -32,19 +32,21 @@
         <h1>Send Dmail</h1>
     </center>
     <div class="form-floating m4">
-        <input class="form-control" name="touser" list="datalistOptions" id="floatingInput" placeholder="Type to search...">
+        <input class="form-control" name="touser" autocomplete="off" list="datalistOptions" id="floatingInput"
+            placeholder="Type to search..." value={{reply.fromuser}}>
         <label for="floatingInput" class="form-label">To</label>
         <datalist id="datalistOptions">
             {% for contact in contacts %}
             <option value={{contact.username}}>
-            {% endfor %}
+                {% endfor %}
         </datalist>
     </div>
 
 
     <br />
     <div class="form-floating">
-        <input type="text" class="form-control" id="floatingInput" name="subject" placeholder="Subject" />
+        <input type="text" class="form-control" id="floatingInput" name="subject" placeholder="Subject"
+            value={{reply.subject}}>
         <label for="floatingPassword">Subject</label>
     </div>
     <br />
@@ -53,7 +55,19 @@
     </center>
     <div class="form-floating1">
         <textarea class="form-control" name="body" placeholder="Write the message to be sent" id="floatingTextarea"
-            style="height: 200px;"></textarea>
+            style="height: 300px;">
+{% if reply.touser != null %}
+
+
+-------- Original Message --------
+Subject: {{reply.subject}}
+Date: {{reply.date}}
+From: {{reply.fromuser}}
+To: {{reply.touser}}
+
+{{reply.body}}
+{% endif %}
+        </textarea>
     </div>
     <br>
     <div class="d-grid gap-2 col-6 mx-auto">

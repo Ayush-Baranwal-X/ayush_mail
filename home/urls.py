@@ -12,5 +12,6 @@ urlpatterns = [
     path('sendmail/', views.sendmail, name = 'sendmail'),
     path('mails/', views.mails, name = 'mails'),
     path('mails/<int:pk>/', views.mail, name = 'mailopen'),
+    path('sendmail/<int:pk>/', views.reply, name = 'mailreply'),
     path('mails/delete/<int:pk>/', views.delete, name = 'maildelete'),
 ]

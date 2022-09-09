@@ -15,9 +15,11 @@
         </span>
     </h5>
     <div class="card-body" style="clear: right;">
-        <p class="card-title">From : {{mail.fromuser}}</p>
-        <p class="card-text">Date : {{mail.date}}</p>
-        <p class="card-text">Body : <pre>{{mail.body}}</pre></p>
+        <p class="card-title">From: {{mail.fromuser}}</p>
+        <p class="card-text">Date: {{mail.date}}</p>
+        <p class="card-text"><pre>{{mail.body}}</pre></p>
+        <a href="{% url 'mailreply' pk=mail.pk%}" class="btn btn-primary">Reply</a>
+        <a href="{% url 'maildelete' pk=mail.pk%}" class="btn btn-primary">Delete</a>
     </div>
 </div>
 {% endblock body %}
