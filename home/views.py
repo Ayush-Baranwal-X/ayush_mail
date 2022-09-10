@@ -139,6 +139,8 @@ def reply(request, pk):
     return render(request, 'sendmail.html', context)
 
 def loginUser(request):
+    if not request.user.is_anonymous:
+        return redirect('/')
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -153,6 +155,8 @@ def loginUser(request):
     return render(request, 'login.html')
 
 def signup(request):
+    if not request.user.is_anonymous:
+        return redirect('/')
     if request.method == "POST":
         name = request.POST.get("name")
         username = request.POST.get("username")
@@ -179,6 +183,8 @@ def signup(request):
     return render(request, 'signup.html')
 
 def logoutUser(request):
+    if request.user.is_anonymous:
+        return redirect('/login')
     logout(request)
     messages.success(request, 'Logged Out Successfully!')
     return redirect('/login')
