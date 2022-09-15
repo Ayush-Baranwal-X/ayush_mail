@@ -166,7 +166,7 @@ def signup(request):
         country = request.POST.get("country")
         gender = request.POST.get("gender")
         date = timezone.now()
-        if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
+        if (username != "" and User.objects.filter(username=username).exists()) or (email != "" and User.objects.filter(email=email).exists()):
             messages.warning(request, 'Your account already exists. Try logging in!')
             return redirect('/login')
         else:
