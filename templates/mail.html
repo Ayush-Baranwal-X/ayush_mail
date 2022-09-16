@@ -11,7 +11,12 @@
     <h5 class="card-header">
         <span>
             {{mail.subject}}
-            <a href="/mails" role="button" style="float: right; text-decoration: none;">x</a>
+            {% if status == 0 %}
+                <a href="/mails" role="button" style="float: right; text-decoration: none;">x</a>
+            {% endif %}
+            {% if status == 1 %}
+                <a href="/sentmail" role="button" style="float: right; text-decoration: none;">x</a>
+            {% endif %}
         </span>
     </h5>
     <div class="card-body" style="clear: right;">
