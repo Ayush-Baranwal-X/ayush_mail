@@ -18,8 +18,14 @@
         <p class="card-title">From: {{mail.fromuser}}</p>
         <p class="card-text">Date: {{mail.date}}</p>
         <p class="card-text"><pre>{{mail.body}}</pre></p>
-        <a href="{% url 'mailreply' pk=mail.pk%}" class="btn btn-primary">Reply</a>
-        <a href="{% url 'maildelete' pk=mail.pk%}" class="btn btn-primary">Delete</a>
+        {% if status == 0 %}
+            <a href="{% url 'mailreply' pk=mail.pk%}" class="btn btn-primary">Reply</a>
+            <a href="{% url 'maildelete' pk=mail.pk sent=0%}" class="btn btn-primary">Delete</a>
+        {% endif %}
+        {% if status == 1 %}
+            <a href="{% url 'maildelete' pk=mail.pk sent=1%}" class="btn btn-primary">Delete for me</a>
+            <a href="{% url 'maildeletex' pk=mail.pk sent=1%}" class="btn btn-primary">Delete for Everyone</a>
+        {% endif %}
     </div>
 </div>
 {% endblock body %}

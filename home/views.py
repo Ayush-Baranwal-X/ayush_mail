@@ -24,7 +24,7 @@ def index(request):
 def mails(request):
     if request.user.is_anonymous:
         return redirect('/login')
-    mails = Mail.objects.filter(touser=request.user.username).order_by('date').reverse()
+    mails = Mail.objects.filter(touser=request.user.username).filter(deleteTo='0').order_by('date').reverse()
     number = mails.count()
     context = {
         'mails_tab' : 'active',
@@ -33,24 +33,62 @@ def mails(request):
     }
     return render(request, 'mails.html', context)
 
-def mail(request,pk):
+def sentmail(request):
+    if request.user.is_anonymous:
+        return redirect('/login')
+    mails = Mail.objects.filter(fromuser=request.user.username).filter(deleteFrom='0').order_by('date').reverse()
+    number = mails.count()
+    context = {
+        'sentmail_tab' : 'active',
+        'mails' : mails,
+        'number' : number,
+    }
+    return render(request, 'sentmail.html', context)
+
+def mail(request,pk,sent):
     if request.user.is_anonymous:
         return redirect('/login')
     # mails = Mail.objects.get(pk = pk)
     mail = get_object_or_404(Mail,pk = pk)
-    context = {
-        'mails_tab' : 'active',
-        'mail' : mail,
-    }
+    if(sent == 1):
+        context = {
+            'status' : 1,
+            'sentmail_tab' : 'active',
+            'mail' : mail,
+        }
+    else:
+        context = {
+            'status' : 0,
+            'mails_tab' : 'active',
+            'mail' : mail,
+        }
     return render(request, 'mail.html', context)
 
-def delete(request,pk):
+def deletex(request,pk,sent):
     if request.user.is_anonymous:
         return redirect('/login')
     # mails = Mail.objects.get(pk = pk)
     mail = get_object_or_404(Mail,pk = pk)
     mail.delete()
-    return redirect('/mails')
+    if sent == 1:
+        return redirect('/sentmail')
+    else:
+        return redirect('/mails')
+        
+
+def delete(request,pk,sent):
+    if request.user.is_anonymous:
+        return redirect('/login')
+    # mails = Mail.objects.get(pk = pk)
+    mail = get_object_or_404(Mail,pk = pk)
+    if sent == 1:
+        mail.deleteFrom = '1'
+        mail.save()
+        return redirect('/sentmail')
+    else:
+        mail.deleteTo = '1'
+        mail.save()
+        return redirect('/mails')
 
 def about(request):
     if request.user.is_anonymous:

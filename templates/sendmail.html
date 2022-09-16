@@ -65,9 +65,7 @@
         <label for="floatingTextarea">Body</label>
     </center>
     <div class="form-floating1">
-        <textarea class="form-control" name="body" placeholder="Write the message to be sent" id="floatingTextarea"
-            style="height: 300px;">
-{% if reply.touser != null %}
+<textarea class="form-control" name="body" placeholder="Write the message to be sent" id="floatingTextarea" style="height: 300px;">{% if reply.touser != null %}
 
 
 -------- Original Message --------
@@ -77,8 +75,7 @@ From: {{reply.fromuser}}
 To: {{reply.touser}}
 
 {{reply.body}}
-{% endif %}
-        </textarea>
+{% endif %}</textarea>
     </div>
     <br>
     <div class="d-grid gap-2 col-6 mx-auto">

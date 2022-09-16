@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Sent Dmails{% endblock title %}
+
+{% block image %}
+
+{% endblock image %}
+
+{% block body %}
+
+{% if number == 0 %}
+<h1 style="align-items: center; justify-content: center; display: flex; vertical-align: middle; margin-top: 10%;">You haven't sent any Dmails. What are you waiting for? Send one now!</h1>
+{% else %}
+<h1 style="margin-left: 10px;">You have sent the following Dmails</h1>
+{% endif %}
+
+
+
+{% for mail in mails %}
+<!-- From : {{mail.fromuser}}
+<br>
+<a href="">
+    Subject : {{mail.subject}}
+</a>
+<br>
+<br> -->
+
+<div class="card">
+    <h5 class="card-header">
+        {{mail.subject}}
+    </h5>
+    <div class="card-body">
+        <p class="card-title">To : {{mail.touser}}</p>
+        <p class="card-text">Date : {{mail.date}}</p>
+        <a href="{% url 'mailopen' pk=mail.pk sent=1%}" class="btn btn-primary">Read</a>
+        <a href="{% url 'maildelete' pk=mail.pk sent=1%}" class="btn btn-primary">Delete</a>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock body %}

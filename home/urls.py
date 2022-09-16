@@ -11,7 +11,9 @@ urlpatterns = [
     path('signup/', views.signup, name = 'signup'),
     path('sendmail/', views.sendmail, name = 'sendmail'),
     path('mails/', views.mails, name = 'mails'),
-    path('mails/<int:pk>/', views.mail, name = 'mailopen'),
+    path('sentmail/', views.sentmail, name = 'sentmail'),
+    path('mails/<int:pk>/<int:sent>/', views.mail, name = 'mailopen'),
     path('sendmail/<int:pk>/', views.reply, name = 'mailreply'),
-    path('mails/delete/<int:pk>/', views.delete, name = 'maildelete'),
+    path('mails/delete/<int:pk>/<int:sent>/', views.delete, name = 'maildelete'),
+    path('mails/deletex/<int:pk>/<int:sent>/', views.deletex, name = 'maildeletex'),
 ]

@@ -32,8 +32,8 @@
     <div class="card-body">
         <p class="card-title">From : {{mail.fromuser}}</p>
         <p class="card-text">Date : {{mail.date}}</p>
-        <a href="{% url 'mailopen' pk=mail.pk%}" class="btn btn-primary">Read</a>
-        <a href="{% url 'maildelete' pk=mail.pk%}" class="btn btn-primary">Delete</a>
+        <a href="{% url 'mailopen' pk=mail.pk sent=0%}" class="btn btn-primary">Read</a>
+        <a href="{% url 'maildelete' pk=mail.pk sent=0%}" class="btn btn-primary">Delete</a>
     </div>
 </div>
 
