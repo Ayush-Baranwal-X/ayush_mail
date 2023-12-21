@@ -4,4 +4,4 @@
 - Implemented a system using Django which allows anyone to create a new account or log in and log out of their own accounts 
 - Included a feature that allows users to send emails, receive emails, reply to emails and delete the sent and received emails 
 
-Link to the website: https://dmail.pythonanywhere.com/
+Link to the website - https://dmail.pythonanywhere.com/
